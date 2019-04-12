@@ -69,7 +69,11 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-    throw new Error('Not implemented');
+    let str = ""
+    for(let i = 7; i < value.length; i++) {
+        str+=value[i]
+    }
+    return str
 }
 
 
@@ -84,7 +88,7 @@ function extractNameFromTemplate(value) {
  *   'cat'       => 'c'
  */
 function getFirstChar(value) {
-    throw new Error('Not implemented');
+    return value[0]
 }
 
 /**
@@ -99,7 +103,14 @@ function getFirstChar(value) {
  *   '\tHello, World! ' => 'Hello, World!'
  */
 function removeLeadingAndTrailingWhitespaces(value) {
-    throw new Error('Not implemented');
+    let str = ''
+    for(let i = 0; i < value.length; i++) {
+        if(value[0] == /s/ ) {
+            continue
+        }
+        str+=value[i]
+    }
+    return str
 }
 
 /**
