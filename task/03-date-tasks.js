@@ -22,7 +22,7 @@
  *    'Sun, 17 May 1998 03:00:00 GMT+01' => Date()
  */
 function parseDataFromRfc2822(value) {
-   throw new Error('Not implemented');
+   return new Date(value)
 }
 
 /**
@@ -37,7 +37,9 @@ function parseDataFromRfc2822(value) {
  *    '2016-01-19T08:07:37Z' => Date()
  */
 function parseDataFromIso8601(value) {
-   throw new Error('Not implemented');
+   let date = new Date(value)
+   let newDate = date.toUTCString()
+   return Date.parse(newDate)
 }
 
 
@@ -56,7 +58,17 @@ function parseDataFromIso8601(value) {
  *    Date(2015,1,1)    => false
  */
 function isLeapYear(date) {
-   throw new Error('Not implemented');
+   let year = date.getFullYear()
+   if(year % 4 != 0) {
+      return false
+   } else if(year % 100 != 0) {
+      return true
+   } else if(year % 400 != 0 ) {
+      return false
+   }
+   else {
+      return true
+   }
 }
 
 
@@ -76,7 +88,18 @@ function isLeapYear(date) {
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
  */
 function timeSpanToString(startDate, endDate) {
-   throw new Error('Not implemented');
+   let dif = Math.abs(startDate - endDate);   
+   let milSec = dif % 1000;
+      if(milSec < 10) {milSec = "00" + milSec}
+       else if(milSec > 10 && milSec < 100) {milSec = "0" + milSec}
+   let sec = Math.floor((dif / 1000)) % 60;
+      if(sec < 10) {sec = "0" + sec}
+   let min = Math.floor((dif /1000 / 60)) % 60;
+      if(min < 10) {min = "0" + min}
+   let hours = Math.floor(dif / 1000 / 60 / 60);
+      if(hours < 10) {hours = "0" + hours}
+   return hours + ":" + min + ":" + sec + "." + milSec 
+   
 }
 
 
@@ -94,7 +117,22 @@ function timeSpanToString(startDate, endDate) {
  *    Date.UTC(2016,3,5,21, 0) => Math.PI/2
  */
 function angleBetweenClockHands(date) {
-    throw new Error('Not implemented');
+   let dat = new Date(date)
+   let hours = dat.getHours();
+   let minutes = dat.getMinutes();
+   let h = 0.5 * (60 * hours + minutes);
+   let m = 6 * minutes;
+   if(h == m) {
+      return 0
+   }
+   let dif = Math.abs(0.5 * (60 * hours - 11 * minutes))
+   if(dif > 180) {
+      dif = 360 - dif
+   }
+   
+   return dif * Math.PI / 180
+   
+   
 }
 
 
