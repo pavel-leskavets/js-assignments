@@ -117,20 +117,20 @@ function timeSpanToString(startDate, endDate) {
  *    Date.UTC(2016,3,5,21, 0) => Math.PI/2
  */
 function angleBetweenClockHands(date) {
-   let dat = new Date(date)
-   let hours = dat.getHours();
-   let minutes = dat.getMinutes();
-   let h = 0.5 * (60 * hours + minutes);
-   let m = 6 * minutes;
-   if(h == m) {
-      return 0
-   }
-   let dif = Math.abs(0.5 * (60 * hours - 11 * minutes))
-   if(dif > 180) {
-      dif = 360 - dif
-   }
+   // let dat = new Date(date)
+   // let hours = dat.getHours();
+   // let minutes = dat.getMinutes();
+   // let h = 0.5 * (60 * hours + minutes);
+   // let m = 6 * minutes;
+   // if(h == m) {
+   //    return 0
+   // }
+   // let dif = Math.abs(0.5 * (60 * hours - 11 * minutes))
+   // if(dif > 180) {
+   //    dif = 360 - dif
+   // }
    
-   return dif * Math.PI / 180
+   // return dif * Math.PI / 180
    
    
 }
