@@ -236,7 +236,11 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-    throw new Error('Not implemented');
+    return str.replace(/[A-Za-z]/g, function (c) {
+        return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".charAt(
+               "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm".indexOf(c)
+        );
+      } );
 }
 
 /**
@@ -253,7 +257,11 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-    throw new Error('Not implemented');
+    let str = value;
+    if(str instanceof String || typeof value == "string") {
+        return true
+    }
+    return false
 }
 
 
@@ -282,7 +290,36 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-    throw new Error('Not implemented');
+    let cardsStr = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+    let cardIndex = cardsStr.indexOf(value[0]);
+    if(value.length === 3) {
+        cardIndex = 9;
+        if(value[2] == '♣') {
+            return cardIndex;
+        }
+        else if (value[2] == '♦') {
+            return +cardIndex + +13;
+        }
+        else if (value[2] == '♥') {
+            return +cardIndex + +26;
+        }
+        else if (value[2] == '♠') {
+            return +cardIndex + +39;
+        }
+        }   
+    
+    if(value[1] == '♣') {
+        return cardIndex;
+    }
+    else if (value[1] == '♦') {
+        return +cardIndex + +13;
+    }
+    else if (value[1] == '♥') {
+        return +cardIndex + +26;
+    }
+    else if (value[1] == '♠') {
+        return +cardIndex + +39;
+    }
 }
 
 
