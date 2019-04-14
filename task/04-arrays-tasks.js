@@ -534,7 +534,16 @@ function getIdentityMatrix(n) {
  *     3, 3   => [ 3 ]
  */
 function getIntervalArray(start, end) {
-   throw new Error('Not implemented');
+   let len = 0 - start + end + 1;
+   let a = start;
+   let arr = Array.from({ length: len })
+   return arr.map(function(elem, i, arr) {      
+      let num = arr[i] = a
+      a+=1
+      return num     
+   })
+
+
 }
 
 /**
@@ -549,7 +558,14 @@ function getIntervalArray(start, end) {
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
 function distinct(arr) {
-   throw new Error('Not implemented');
+   let a = []
+   arr.map(function(num){
+      if(a.indexOf(num) == -1) {
+         return a.push(num)
+      }
+      
+   })
+   return a
 }
 
 /**
@@ -583,7 +599,7 @@ function distinct(arr) {
  *   }
  */
 function group(array, keySelector, valueSelector) {
-   throw new Error('Not implemented');
+   
 }
 
 
@@ -599,7 +615,6 @@ function group(array, keySelector, valueSelector) {
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
 function selectMany(arr, childrenSelector) {
-    throw new Error('Not implemented');
 }
 
 
@@ -616,7 +631,10 @@ function selectMany(arr, childrenSelector) {
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
 function getElementByIndexes(arr, indexes) {
-    throw new Error('Not implemented');
+    return indexes.reduce(function(prev, next){
+         return prev[next]
+    }, arr)
+    
 }
 
 
@@ -639,7 +657,18 @@ function getElementByIndexes(arr, indexes) {
  * 
  */
 function swapHeadAndTail(arr) {
-    throw new Error('Not implemented');
+   if(arr.length % 2 != 0) {
+      let mid = Math.floor(arr.length / 2);
+      let head = arr.slice(0, mid);
+      let tail = arr.slice(mid+1);
+      return tail.concat(arr[mid], head)
+   }
+   else {
+      let head = arr.slice(0, arr.length / 2);
+      let tail = arr.slice(arr.length / 2);
+      return tail.concat(head)
+   }
+
 }
 
 
