@@ -31,7 +31,7 @@
  * @return {RegExp}
  */
 function getRegexForGuid() {
-   throw new Error('Not implemented');
+   return /\w{8}\-\w{4}\-\w{4}\-\w{4}\-\w12/
 }
 
 

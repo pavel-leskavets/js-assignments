@@ -217,15 +217,13 @@ function getTail(arr, n) {
  *    +'30,31,32,33,34'
  */
 function toCsvText(arr) {
-   // let newArr = arr.map(function(num){
-   //    return num.join(',')
-   // })
-   // return newArr.map(function(elem, i, newArr){
-   //          if(i % 9 == 0) {
-   //       return newArr[i] + '\n'
-   //    }
-   //    return newArr[i]
-   // })
+   let newArr = arr.map(function(num){
+      return num.join(',')
+   })
+   newArr.map(function(elem){
+         return elem+="\n"
+   })
+   return newArr.join("\n")
 }
 
 /**
@@ -261,14 +259,15 @@ function toArrayOfSquares(arr) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
 function getMovingSum(arr) {
-   // let n = arr[0];
-   // let a = 0;
-      
-   // return arr.map(function(elem, i, arr) {          
-   //    let num = arr[i] = n+a
-   //    a = num
-   //    return num     
-   // })
+   let n = arr[0];      
+   return arr.map(function(elem, i) {
+      if(i == 0) {
+         return elem
+      }
+      elem += n;
+      n = elem;
+      return elem
+   })
 }
 
 /**
@@ -309,10 +308,15 @@ function getSecondItems(arr) {
  *  [ 'a', 'b', 'c', null ] => [ 'a', 'b','b', 'c','c','c',  null,null,null,null ]
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
-function propagateItemsByPositionIndex(arr) {
-   // return arr.map(function(elem, i, arr) {          
-   //    return arr.   
-   // })
+function propagateItemsByPositionIndex(arr) {   
+   let newArrLength = (1 + arr.length) / 2 * 5;
+   let newArr = Array.from({ length: newArrLength })
+
+   return arr.map(function(elem, i, arr) {
+      return newArr.fill(elem, i, newArr.length )
+   })
+
+
 }
 
 
@@ -615,6 +619,10 @@ function group(array, keySelector, valueSelector) {
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
 function selectMany(arr, childrenSelector) {
+   let newArr = arr.map(function(n) {
+      return n = childrenSelector(n)
+   })
+   return [].concat.apply([], newArr)
 }
 
 

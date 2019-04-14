@@ -121,11 +121,10 @@ function angleBetweenClockHands(date) {
    let minutes = date.getUTCMinutes();
    let h = 0.5 * (60 * hours + minutes);
    let m = 6 * minutes;
-   if(h === m) {
-      return 0
+   let dif = 0.5 * (60 * hours - 11 * minutes)
+   if(dif > 180) {
+      dif = 360 - dif
    }
-   let dif = Math.abs(0.5 * (60 * hours - 11 * minutes))
-   
    
    return Math.abs(dif) * Math.PI / 180
    

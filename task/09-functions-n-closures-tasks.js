@@ -145,8 +145,8 @@ function retry(func, attempts) {
  */
 function logger(func, logFunc) {
     function wrapper(a) {
-        logFunc.call(this, a)
-        return func.call(this, a);
+        func.call(this, a); 
+        return logFunc.call(this, a)
       }
   
     return wrapper;
