@@ -119,6 +119,9 @@ function timeSpanToString(startDate, endDate) {
 function angleBetweenClockHands(date) {
    let hours = date.getUTCHours()
    let minutes = date.getUTCMinutes();
+   if(hours > 12) {
+      hours = hours - 12
+   }
    let h = 0.5 * (60 * hours + minutes);
    let m = 6 * minutes;
    let dif = 0.5 * (60 * hours - 11 * minutes)

@@ -456,27 +456,22 @@ function isBracketsBalanced(str) {
 function timespanToHumanString(startDate, endDate) {
     let dif = Math.abs(startDate - endDate);
     let sec = Math.ceil((dif / 1000));
-    let min = dif /1000 / 60;
-    if(min - Math.floor(min) == 0.5) {
-        min = min - 0.5;
-    }
-    else {
-        min = Math.ceil(min)
-    }
-    let hours = dif / 1000 / 60 / 60;
-    if(hours - Math.floor(hours) == 30) {
-        hours = hours - 30;
-    }
-    else {
-        hours = Math.ceil(hours)
-    }
-    let days = Math.ceil(hours / 24 );
-    let month = Math.ceil(days / 30);
-    let years = Math.ceil(days / 365);
-    if(sec >= 0 && sec <= 45) {
+    let min = Math.round(dif /1000 / 60); 
+     
+    let hours = Math.floor(dif / 1000 / 60 / 60);    
+    let days = Math.floor(hours / 24 );
+    let month = Math.floor(days / 30);
+    let years = Math.floor(days / 365);
+    if(sec == 30) {
+        min-=1
+    }  
+    if(sec == 45) {
         return "a few seconds ago"
     }
-    else if(sec > 45 && sec <= 90) {
+    if(sec >= 0 && sec < 45) {
+        return "a few seconds ago"
+    }
+    else if(sec >= 45 && sec <= 90) {
         return "a minute ago"
     }
     else if(sec > 90 && min <= 45) {
