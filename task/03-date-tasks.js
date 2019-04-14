@@ -125,9 +125,7 @@ function angleBetweenClockHands(date) {
       return 0
    }
    let dif = Math.abs(0.5 * (60 * hours - 11 * minutes))
-   if(dif > 180) {
-      dif = 360 - dif
-   }
+   
    
    return Math.abs(dif) * Math.PI / 180
    

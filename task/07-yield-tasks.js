@@ -32,8 +32,9 @@
  * @return {Iterable.<string>}
  *
  */
-function* get99BottlesOfBeer() {
-    throw new Error('Not implemented');
+function* get99BottlesOfBeer() { 
+    
+    
 }
 
 
@@ -46,8 +47,9 @@ function* get99BottlesOfBeer() {
  * @return {Iterable.<number>}
  *
  */
-function* getFibonacciSequence() {
-    throw new Error('Not implemented');
+function* getFibonacciSequence(n) {
+    
+
 }
 
 

@@ -360,7 +360,7 @@ function isCreditCardNumber(ccn) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
-    throw new Error('Not implemented');
+    return (num - 1) % 9 + 1
 }
 
 
@@ -386,7 +386,39 @@ function getDigitalRoot(num) {
  *   '{[(<{[]}>)]}' = true 
  */
 function isBracketsBalanced(str) {
-    throw new Error('Not implemented');
+    let arr = [];
+    for(let i = 0; i < str.length; i++) {
+        if(str[i] == "[" || str[i] == "(" || str[i] == "{" || str[i] == "<") {
+            arr.push(str[i]);
+            continue
+        }
+        else if(str[i] == "]" && arr[arr.length - 1] == "[") {
+            arr.pop()
+            continue
+        }
+        else if(str[i] == ")" && arr[arr.length - 1] == "(") {
+            arr.pop()
+            continue
+        }
+        else if(str[i] == "}" && arr[arr.length - 1] == "{") {
+            arr.pop()
+            continue
+        }
+        else if(str[i] == ">" && arr[arr.length - 1] == "<") {
+            arr.pop()
+            continue
+        }
+        else {
+            return false
+        }
+        
+    }
+    if(arr.length != 0) {
+        return false
+    }
+    else {
+        return true
+    }
 }
 
 
@@ -422,8 +454,60 @@ function isBracketsBalanced(str) {
  *
  */
 function timespanToHumanString(startDate, endDate) {
-    throw new Error('Not implemented');
-}
+    let dif = Math.abs(startDate - endDate);
+    let sec = Math.ceil((dif / 1000));
+    let min = dif /1000 / 60;
+    if(min - Math.floor(min) == 0.5) {
+        min = min - 0.5;
+    }
+    else {
+        min = Math.ceil(min)
+    }
+    let hours = dif / 1000 / 60 / 60;
+    if(hours - Math.floor(hours) == 30) {
+        hours = hours - 30;
+    }
+    else {
+        hours = Math.ceil(hours)
+    }
+    let days = Math.ceil(hours / 24 );
+    let month = Math.ceil(days / 30);
+    let years = Math.ceil(days / 365);
+    if(sec >= 0 && sec <= 45) {
+        return "a few seconds ago"
+    }
+    else if(sec > 45 && sec <= 90) {
+        return "a minute ago"
+    }
+    else if(sec > 90 && min <= 45) {
+        return  min + " minutes ago"
+    }
+    else if(min > 45 && min <= 90) {
+        return  "an hour ago"
+    }
+    else if(min > 90 && hours <= 22) {
+        return  hours + " hours ago"
+    }
+    else if(hours > 22 && hours <= 36) {
+        return  "a day ago"
+    }
+    else if(hours > 36 && days <= 25) {
+        return  days + " days ago"
+    }
+    else if(days > 25 && days <= 45) {
+        return  "a month ago"
+    }
+    else if(days > 45 && days <= 345) {
+        return  month + " months ago"
+    }
+    else if(days > 345 && days <= 545) {
+        return  "a year ago"
+    }
+    else if(days > 545) {
+        return years +  " years ago"
+    }
+    
+    }
 
 
 /**
@@ -446,7 +530,15 @@ function timespanToHumanString(startDate, endDate) {
  *    365, 10 => '365'
  */
 function toNaryString(num, n) {
-    throw new Error('Not implemented');
+    let arr = [];
+    while(num / n >= 1) {   
+        arr.push(num % n);
+        num = Math.floor(num / n);
+         if(num / n < 1) {
+            arr.push(num % n)
+        } 
+    } 
+    return arr.reverse().join("")
 }
 
 
